@@ -1,3 +1,3 @@
-import * as Malong from './src/Api';
+const Api = require('./src/Api');
 
-exports = { Malong };
+module.exports = Api;

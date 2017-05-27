@@ -4,13 +4,19 @@
   "description": "码隆科技nodejs sdk",
   "main": "index.js",
   "scripts": {
+    "major": "npm version major && npm publish",
+    "minor": "npm version minor && npm publish",
+    "patch": "npm version patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "locutus": "^2.0.8",
     "lodash": "^4.17.4",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "qs": "^6.4.0",
+    "request": "^2.81.0"
   }
 }
