@@ -6,7 +6,7 @@
 ## 使用
 #### 初始化
 ```nodejs
-import { Malong } from 'malong-nodejs-sdk';
+const Malong = require('malong-nodejs-sdk');
 
 let productAi = new Malong(accessKeyId, secretKey);
 ```
