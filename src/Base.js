@@ -7,22 +7,46 @@ const readFile = Bluebird.promisify(fs.readFile);
 const writeFile = Bluebird.promisify(fs.writeFile);
 
 class Base {
+
     constructor(accessKeyId, secretKey) {
 
-        this.accessKeyId = accessKeyId;
-        this.secretKey = secretKey;
-        caFile = path.resolve(__dirname, 'ssl/ca.cert.pem')
+        this.opts = {
+            accessKeyId = accessKeyId,
+            secretKey = secretKey,
+            caFile = fs.readFileSync(path.resolve('./ca.cert.pem')),
+            timeout: 30 * 1000,
+            method: 'POST',
+            headers: {
+                'x-ca-version': 1,
+                'x-ca-accesskeyid': accessKeyId,
+                'x-ca-timestamp': Math.floor(new Date() / 1000),
+                'x-ca-signaturenonce': this.generateNonce(16),
+                'requestmethod': 'POST',
+                'user-agent': `ProductAI-SDK-NODEJS/${this.version()} (+http://www.productai.cn)`,
+            }
+        }
 
-        this.initialize();
+    }
 
-        this.curlOpt = [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_CAINFO => __DIR__.'/ca.pem',
-        ];
+    signRequests()
+    {
+        // $headers = $this->headers;
+        // unset($headers['user-agent']);
+        let h = _.filter(this.headers, function(o){
+            return 
+        })
 
+        // $body = [];
+        // foreach ($this->body as $k => $v) {
+        //     if (is_string($v) || is_numeric($v)) {
+        //         $body[$k] = $v;
+        //     }
+        // }
 
+        // $requests = array_merge($headers, $body);
+        // ksort($requests);
 
+        // return base64_encode(hash_hmac('sha1', urldecode(http_build_query($requests)), $this->secret_key, true));
     }
 
     initialize() {
@@ -47,14 +71,7 @@ class Base {
         //     'tmpfile',
         // ], null);
 
-        this.method = 'POST';
-        this.headers = {
-            'x-ca-version': 1,
-            'x-ca-accesskeyid': this.accessKeyId,
-            'x-ca-timestamp': Math.floor(new Date() / 1000),
-            'x-ca-signaturenonce': this.generateNonce(16),
-            'user-agent': `ProductAI-SDK-NODEJS/${this.version()} (+http://www.productai.cn)`,
-        }
+
     }
 
     getCaFile(path) {
