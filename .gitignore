@@ -2,4 +2,5 @@ Api.php
 Base.php
 node_modules
 snippets
-/test
+config.js
+npm-debug.log
