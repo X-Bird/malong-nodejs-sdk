@@ -2,3 +2,5 @@ Api.php
 Base.php
 node_modules
 snippets
+config.js
+npm-debug.log
