@@ -241,11 +241,11 @@ class Api {
         };
 
         return this.sendRequest(requestOptions)
-            .then(async function (d) {
+            .then(async (d) => {
                 f.close();
                 try { await unlink(`${tmpPath}/${randomFileName}`); }
                 catch (e) {
-                    // do nothing
+                    console.error(e);
                 }
 
                 return d;
@@ -294,11 +294,11 @@ class Api {
         };
 
         return this.sendRequest(requestOptions)
-            .then(async function (d) {
+            .then(async (d) => {
                 f.close();
                 try { await unlink(`${tmpPath}/${randomFileName}`); }
                 catch (e) {
-                    // do nothing
+                    console.error(e);
                 }
 
                 return d;
